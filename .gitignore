@@ -1,4 +1,5 @@
 liblouis/
+build/
 
 # Prerequisites
 *.d
