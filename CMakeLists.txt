@@ -14,8 +14,8 @@ file(GLOB_RECURSE ENCODED
 #  liblouis/liblouis/*.cpp 
 #  liblouis/liblouis/*.h
    encoded/*.c 
+   
 )
-
 
 
 set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
@@ -31,8 +31,16 @@ add_executable(${PROJECT_NAME}
     liblouis/liblouis/utils.c				
     liblouis/liblouis/maketable.c
     addons/simple.c
+    proxy/emfile.c
+    proxy/emfile.h
     ${ENCODED}
  )
+
+target_include_directories(${PROJECT_NAME}  PRIVATE
+   encoded/
+   proxy/   
+   liblouis/liblouis/
+) 
   
 #set some Emscripten options
 #if(FALSE) # fake a block comment
@@ -49,8 +57,9 @@ add_executable(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
     --pre-js \
     ../addons/locateFile.js \
+    -s TOTAL_MEMORY=128mb \
     -s ENVIRONMENT='web' \
     -s EXPORT_NAME='createModule' \
     -s USE_ES6_IMPORT_META=0 \
-    -s EXPORTED_FUNCTIONS='[\"_test_add\", \"_set_str\",\"_get_str\", \"_malloc\", \"_free\"]' \
-    -s EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"stringToUTF32\", \"UTF32ToString\", \"lengthBytesUTF32\"]'  ")
+    -s EXPORTED_FUNCTIONS='[\"_test_add\", \"_set_str\",\"_get_str\", \"_malloc\", \"_free\", \"_test_file\"]' \
+    -s EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"stringToUTF32\", \"UTF32ToString\", \"lengthBytesUTF32\", \"AsciiToString\"]'  ")

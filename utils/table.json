@@ -4,5 +4,10 @@
         "*.*"
     ],
     "srcdir":"./liblouisreact/liblouis/tables/",
-    "dstdir":"./liblouisreact/encoded/"
+    "dstdir":"./liblouisreact/encoded/",
+
+    "db_header":"./liblouisreact/encoded/loudatabase.h",
+    "db_implement":"./liblouisreact/encoded/loudatabase.c",
+    "db_type":"lou_dbfile",
+    "db_name":"lou_database"
 }
