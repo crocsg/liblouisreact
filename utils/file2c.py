@@ -54,7 +54,7 @@ def build (path):
     root = ""
     if "srcdir" in data:
         root = data["srcdir"]
-
+ 
     if "f2c" in data:
         for filter in data["f2c"]:
             files = glob.glob (root+filter)
