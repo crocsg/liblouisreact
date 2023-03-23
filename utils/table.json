@@ -1,0 +1,8 @@
+{
+    "base":"louistable",
+    "f2c": [
+        "*.*"
+    ],
+    "srcdir":"./liblouisreact/liblouis/tables/",
+    "dstdir":"./liblouisreact/encoded/"
+}

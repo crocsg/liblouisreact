@@ -9,11 +9,12 @@ add_definitions(-DEMSCRIPTEM_SUPPORT)
 add_definitions(-DCMAKE_TOOLCHAIN_FILE=/home/dev/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=/home/dev/emsdk/node/14.18.2_64bit/bin/node)
 
-#file(GLOB_RECURSE FILES 
+file(GLOB_RECURSE ENCODED 
 #  liblouis/liblouis/*.c 
 #  liblouis/liblouis/*.cpp 
 #  liblouis/liblouis/*.h
-#)
+   encoded/*.c 
+)
 
 
 
@@ -30,6 +31,7 @@ add_executable(${PROJECT_NAME}
     liblouis/liblouis/utils.c				
     liblouis/liblouis/maketable.c
     addons/simple.c
+    ${ENCODED}
  )
   
 #set some Emscripten options
