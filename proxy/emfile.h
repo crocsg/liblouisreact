@@ -17,11 +17,12 @@
 #ifndef __EMFILE_H
 #define __EMFILE_H
 
-
+#include <sys/stat.h>
 
 
 LOU_FHANDLE *emfopen(const char *filename, const char *mode);
 int emfgetc(LOU_FHANDLE *stream);
 int emfclose(LOU_FHANDLE *stream);
+int emstat(const char *path, struct stat *buf);
 
-#endif __EMFILE_H
+#endif // __EMFILE_H

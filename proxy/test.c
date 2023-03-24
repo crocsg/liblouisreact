@@ -12,10 +12,31 @@
 #include "internal.h"
 #include "emfile.h"
 
+static int _error;
+
+int EXPORT_CALL test_lasterror (void)
+{
+    return _error;
+}
 
 widechar* EXPORT_CALL test_translate_fr (widechar* src, int len)
 {
-    lou
+    widechar* pout = malloc(len * sizeof(widechar) * 2);
+    int outlen = len * 2;
+    char* tblist ="unicode.dis,fr-bfu-comp6.utb";
+    
+    _lou_logMessage(LOU_LOG_WARN, "test_translate_fr len=%d", len);
+    _lou_logMessage(LOU_LOG_WARN, "test_translate_fr len bytes=%d", len * sizeof(widechar) * 2);
+
+    _error = 0;
+    memset (pout, 0, len * sizeof(widechar) * 2);
+    int result = lou_translateString(tblist, src, &len,
+		pout, &outlen, NULL, NULL, 0);
+    
+    if (result)
+        _error = result;
+
+    return pout;
 }
 
 char* EXPORT_CALL test_file (void)

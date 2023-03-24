@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <memory.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifdef __EMSCRIPTEN__
 #include "emscripten.h"
@@ -19,6 +21,32 @@ extern lou_dbfile lou_database[];
 
 // file handles
 static LOU_FHANDLE _filesystem[EMFILE_HANDLE_NBR] = {0};
+static char _asked_file[8192] = {0};
+
+int emstat(const char *path, struct stat *buf)
+{
+    lou_dbfile* pdata = NULL;
+
+    // find the requested file
+    for (int i = 0; i < LOU_DBFILE_NBR; i++)
+    {
+        if (strcmp (lou_database[i].fname, path) == 0)
+        {
+            pdata = &lou_database[i];
+            break;
+        }
+    }
+    if (pdata == NULL)
+        return -1;
+ 
+    memset (buf, 0, sizeof(struct stat));
+    buf->st_size = *(pdata->size);
+    buf->st_mode = S_IFREG;
+
+    _lou_logMessage(LOU_LOG_WARN, "stat ok %s\n", pdata->fname);
+
+    return (0);
+}
 
 LOU_FHANDLE *emfopen(const char *filename, const char *mode)
 {
@@ -27,8 +55,10 @@ LOU_FHANDLE *emfopen(const char *filename, const char *mode)
     // find the requested file
     for (int i = 0; i < LOU_DBFILE_NBR; i++)
     {
+        
         if (strcmp (lou_database[i].fname, filename) == 0)
         {
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s=>%s\n", filename, lou_database[i].fname);
             pdata = &lou_database[i];
             break;
         }
