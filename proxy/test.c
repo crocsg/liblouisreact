@@ -14,11 +14,6 @@
 
 static int _error;
 
-int EXPORT_CALL test_lasterror (void)
-{
-    return _error;
-}
-
 widechar* EXPORT_CALL test_translate_fr (widechar* src, int len)
 {
     widechar* pout = malloc(len * sizeof(widechar) * 2);

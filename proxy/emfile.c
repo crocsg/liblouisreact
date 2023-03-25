@@ -1,4 +1,18 @@
+/* liblouisreact 
 
+   This file is part of liblouisreact .
+
+   liblouisreact is a webassembly proxy to access liblouis library and table
+   from react.js
+
+   liblouisreact is free software: you can redistribute it and/or modify it
+   under the terms of the GNU Lesser General Public License as published
+   by the Free Software Foundation, either version 2.1 of the License, or
+   (at your option) any later version.
+   
+   You should have received a copy of the GNU Lesser General Public
+   License along with liblouisreact. If not, see <http://www.gnu.org/licenses/>.
+*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -42,8 +56,6 @@ int emstat(const char *path, struct stat *buf)
     memset (buf, 0, sizeof(struct stat));
     buf->st_size = *(pdata->size);
     buf->st_mode = S_IFREG;
-
-    _lou_logMessage(LOU_LOG_WARN, "stat ok %s\n", pdata->fname);
 
     return (0);
 }

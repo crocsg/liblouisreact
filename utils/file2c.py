@@ -2,6 +2,7 @@ import sys
 import os
 import json
 import glob
+import fnmatch
 
 NBCOL = 8
 
@@ -28,7 +29,34 @@ def write_start (stream, filename):
     
     stream.write ("#endif\n")
     stream.write ("\n")
-        
+
+def getDisplayName (path):
+    display = ""
+    with open(path,"rt") as fin:
+        while True:
+            line = fin.readline()
+            if not line:
+                break
+            if line.find ("display-name") >= 0:
+                field = line.split (':')
+                if len (field) > 1:
+                    display = field[1].strip ()
+    return display            
+
+def GetTag (path, stag):
+    tag = ""
+    with open(path,"rt") as fin:
+        while True:
+            line = fin.readline()
+            if not line:
+                break
+            if line.find (stag) >= 0:
+                field = line.split (':')
+                
+                if len (field) > 1:
+                    tag = field[1].strip ()
+    return tag            
+
 def file2c (pathfrom, pathto, varname, filename):
     with open(pathfrom,"rb") as fin:
         data = fin.read ()
@@ -53,30 +81,8 @@ def file2c (pathfrom, pathto, varname, filename):
         fout.write ("};\n")
         fout.write ("size_t {0}_size=sizeof({0});\n".format(varname))
 
-def build_database (generated, header, implement, dbname, dbtype):
-    with open (header, "w") as fout:
-        write_header(fout, header)
-        fout.write ("\n")
-        fout.write ("#ifndef\t__{0}_H\n".format(os.path.basename(header).upper().replace('.','_')))
-        fout.write ("#define\t__{0}_H\n".format(os.path.basename(header).upper().replace('.','_')))
-        fout.write ("\n")
-        fout.write ("\n")
-        fout.write ("#define\t{0}_NBR\t{1}\n".format(dbtype.upper(), len(generated)))
-        fout.write ("\n")
-        fout.write ("\n")
-        fout.write ("typedef struct _{0}".format (dbtype))
-        fout.write ("{\n")
-        fout.write ("char *fname;\n")
-        fout.write ("uint8_t* data;\n")
-        fout.write ("size_t* size;\n")
-        fout.write ("} ")
-        fout.write ("{0};\n".format (dbtype))
-        fout.write ("\n")
-        fout.write ("\n")
-        fout.write ("#endif")
-        fout.write ("\n")
-        fout.write ("\n")
-        fout.write ("\n")
+def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, config):
+    
         
     with open (implement, "w") as fout:
         write_header(fout, implement)
@@ -95,10 +101,76 @@ def build_database (generated, header, implement, dbname, dbtype):
         for f in generated:
             fout.write ("\t{ ")    
             fout.write ("\"{0}\",".format(f["filename"]))
-            fout.write (" {0},".format(f["var"]))                
+            fout.write ("{0},".format(f["var"]))                
             fout.write (" &{0}".format(f["var"]+"_size"))                
             fout.write (" },\n")    
         fout.write ("};\n")
+
+        fout.write ("{0} {1}[] = ".format(dbinfo_type, dbname+"_info" ))
+        fout.write ("{\n")
+        
+        filters = config['db_include_filter']
+        count = 0
+        for f in generated:
+            for filter in filters:
+                if fnmatch.fnmatch(f["filename"], filter):
+                    displayname = getDisplayName(f["path"])
+                    language = GetTag (f["path"], "#+language")
+                    region = GetTag (f["path"], "#+region")
+                    ltype = GetTag (f["path"], "#+type")
+                    mode = 0
+
+                    if ltype == "computer":
+                        mode += 1
+
+                    if len(displayname) > 0:
+                        print ("{:10} {:8} {:8} {:25} {}".format(language, region, ltype, f["filename"], displayname))
+                        fout.write ("\t{ ")    
+                        fout.write ("\"{0}\",".format(f["filename"]))
+                        fout.write ("\"{0}\",".format(language))
+                        fout.write ("\"{0}\",".format(region))
+                        fout.write ("\"{0}\",".format(displayname))
+                        fout.write ("0x{0:04x},".format(mode))
+                        fout.write (" },\n")   
+                        count += 1 
+                    break
+        fout.write ("};\n")
+        print (count, "standards")
+
+        with open (header, "w") as fout:
+            write_header(fout, header)
+            fout.write ("\n")
+            fout.write ("#ifndef\t__{0}_H\n".format(os.path.basename(header).upper().replace('.','_')))
+            fout.write ("#define\t__{0}_H\n".format(os.path.basename(header).upper().replace('.','_')))
+            fout.write ("\n")
+            fout.write ("\n")
+            fout.write ("#define\t{0}_NBR\t{1}\n".format(dbtype.upper(), len(generated)))
+            fout.write ("#define\t{0}_INFO_NBR\t{1}\n".format(dbname.upper(), count))
+            fout.write ("\n")
+            fout.write ("\n")
+            fout.write ("typedef struct _{0}".format (dbtype))
+            fout.write ("{\n")
+            fout.write ("\tchar *fname;\n")
+            fout.write ("\tuint8_t* data;\n")
+            fout.write ("\tsize_t* size;\n")
+            fout.write ("} ")
+            fout.write ("{0};\n".format (dbtype))
+            fout.write ("\n")
+            fout.write ("\n")
+            fout.write ("typedef struct _{0}".format (dbinfo_type))
+            fout.write ("{\n")
+            fout.write ("\tchar     *fname;\n")
+            fout.write ("\tchar     *desc;\n")
+            fout.write ("\tchar     *lang;\n")
+            fout.write ("\tchar     *region;\n")
+            fout.write ("\tuint16_t  flags;\n")
+            fout.write ("} ")
+            fout.write ("{0};\n".format (dbinfo_type))
+            fout.write ("#endif")
+            fout.write ("\n")
+            fout.write ("\n")
+            fout.write ("\n")
+
 
 def build (path):
     data = {}
@@ -117,14 +189,14 @@ def build (path):
                 dst = data["dstdir"] + pathtovar(file)+".c"
                 varname = pathtovar(file)
                 filename = os.path.basename(file)
-           
+                
                 print (file, dst)
                 file2c (file, dst, varname, filename)
-                generated.append ({"filename":filename, "var":varname, "src":file, "dst":dst })
+                generated.append ({"filename":filename, "var":varname, "src":file, "dst":dst ,"path":file})
 
         
-        generated.sort(key=lambda filedata: filedata["filename"])
-        build_database (generated, data["db_header"], data["db_implement"], data["db_name"], data["db_type"])
+        generated.sort(key=lambda filedata: filedata["filename"].lower())
+        build_database (generated, data["db_header"], data["db_implement"], data["db_name"], data["db_type"], data["db_type"] + "_info", data)
 
 if __name__ == "__main__":
     #file2c (sys.argv[1], sys.argv[2])

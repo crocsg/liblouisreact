@@ -11,7 +11,7 @@ add_definitions(-DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Mod
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=$ENV{EMSDK_NODE})
 
 file(GLOB_RECURSE ENCODED 
-   encoded/*.c 
+   generated/*.c 
 )
 
 set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
@@ -30,12 +30,15 @@ add_executable(${PROJECT_NAME}
     proxy/emfile.c
     proxy/emfile.h
     proxy/test.c
+    database/loudatabase.c
+    
     ${ENCODED}
  )
 
 target_include_directories(${PROJECT_NAME}  PRIVATE
-   encoded/
+   generated/
    proxy/   
+   database/
    liblouis/liblouis/
 ) 
   
@@ -54,7 +57,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
     --pre-js \
     ../addons/locateFile.js \
-    -s TOTAL_MEMORY=128mb \
+    -s TOTAL_MEMORY=24mb \
     -s ENVIRONMENT='web' \
     -s EXPORT_NAME='createModule' \
     -s USE_ES6_IMPORT_META=0 \

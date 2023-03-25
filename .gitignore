@@ -1,6 +1,6 @@
 liblouis/
 build/
-encoded/
+generated/
 
 # Prerequisites
 *.d
