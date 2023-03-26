@@ -10,9 +10,12 @@
     "db_implement":"./liblouisreact/database/loudatabase.c",
     "db_type":"lou_dbfile",
     "db_name":"lou_database",
-    "db_include_filter":[
+    "db_table_filter":[
         "*.tbl",
         "*.ctb",
         "*.utb"
+    ],
+    "db_display_filter":[
+        "*.dis"
     ]
 }

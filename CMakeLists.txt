@@ -30,6 +30,7 @@ add_executable(${PROJECT_NAME}
     proxy/emfile.c
     proxy/emfile.h
     proxy/test.c
+    proxy/proxy.c
     database/loudatabase.c
     
     ${ENCODED}
@@ -57,7 +58,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
     --pre-js \
     ../addons/locateFile.js \
-    -s TOTAL_MEMORY=24mb \
+    -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
     -s EXPORT_NAME='createModule' \
     -s USE_ES6_IMPORT_META=0 \

@@ -105,11 +105,12 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
             fout.write (" &{0}".format(f["var"]+"_size"))                
             fout.write (" },\n")    
         fout.write ("};\n")
+        fout.write ("\n")
+        fout.write ("\n")
 
         fout.write ("{0} {1}[] = ".format(dbinfo_type, dbname+"_info" ))
         fout.write ("{\n")
-        
-        filters = config['db_include_filter']
+        filters = config['db_table_filter']
         count = 0
         for f in generated:
             for filter in filters:
@@ -127,14 +128,43 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
                         print ("{:10} {:8} {:8} {:25} {}".format(language, region, ltype, f["filename"], displayname))
                         fout.write ("\t{ ")    
                         fout.write ("\"{0}\",".format(f["filename"]))
+                        fout.write ("\"{0}\",".format(displayname))
                         fout.write ("\"{0}\",".format(language))
                         fout.write ("\"{0}\",".format(region))
-                        fout.write ("\"{0}\",".format(displayname))
                         fout.write ("0x{0:04x},".format(mode))
                         fout.write (" },\n")   
                         count += 1 
                     break
         fout.write ("};\n")
+        fout.write ("\n")
+        fout.write ("\n")
+
+        fout.write ("{0} {1}[] = ".format(dbinfo_type, dbname+"_display" ))
+        fout.write ("{\n")
+        filters = config['db_display_filter']
+        countdisplay = 0
+        for f in generated:
+            for filter in filters:
+                if fnmatch.fnmatch(f["filename"], filter):
+                    
+                    
+
+                    
+                    if len(displayname) > 0:
+                        print ("{}".format(f["filename"]))
+                        fout.write ("\t{ ")    
+                        fout.write ("\"{0}\",".format(f["filename"]))
+                        fout.write ("\"\",")
+                        fout.write ("\"\",")
+                        fout.write ("\"\",")
+                        fout.write ("0x0")
+                        fout.write (" },\n")   
+                        countdisplay += 1 
+                    break
+        fout.write ("};\n")
+        fout.write ("\n")
+        fout.write ("\n")
+
         print (count, "standards")
 
         with open (header, "w") as fout:
@@ -146,6 +176,7 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
             fout.write ("\n")
             fout.write ("#define\t{0}_NBR\t{1}\n".format(dbtype.upper(), len(generated)))
             fout.write ("#define\t{0}_INFO_NBR\t{1}\n".format(dbname.upper(), count))
+            fout.write ("#define\t{0}_DISPLAY_NBR\t{1}\n".format(dbname.upper(), countdisplay))
             fout.write ("\n")
             fout.write ("\n")
             fout.write ("typedef struct _{0}".format (dbtype))
