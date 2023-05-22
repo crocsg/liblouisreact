@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-set (PROJECT_NAME "simple")
+set (PROJECT_NAME "liblouisreact")
 
 set(CMAKE_SYSTEM_NAME Emscripten)
 
@@ -43,16 +43,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
    liblouis/liblouis/
 ) 
   
-#set some Emscripten options
-#if(FALSE) # fake a block comment
-#--no-entry simple.c -o simple.mjs   `
-#    --pre-js ../src/locateFile.js   `
-#    -s ENVIRONMENT='web'   `
-#    -s EXPORT_NAME='createModule'   `
-#    -s USE_ES6_IMPORT_META=0   `
-#    -s EXPORTED_FUNCTIONS='["_test_add", "_set_str","_get_str", "_malloc", "_free"]'   `
-#    -s EXPORTED_RUNTIME_METHODS='["ccall", "cwrap", "stringToUTF32", "UTF32ToString", "lengthBytesUTF32"]'  
-#endif()
+
 
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
