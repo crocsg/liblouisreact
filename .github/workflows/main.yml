@@ -24,4 +24,4 @@ jobs:
       - name: Verify
         run: emcc -v
       - name: install tools  
-        run: emconfigure ./liblouis/configure
+        run: ls -la
