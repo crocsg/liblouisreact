@@ -24,4 +24,4 @@ jobs:
       - name: Verify
         run: emcc -v
       - name: install tools  
-        run: apt install build-essential automake
+        run: emconfigure ./liblouis/configure
