@@ -21,7 +21,11 @@ jobs:
         # You may pin to the exact commit or the version.
         # uses: mymindstorm/setup-emsdk@ab889da2abbcbb280f91ec4c215d3bb4f3a8f775
         uses: mymindstorm/setup-emsdk@v12
+      - name: fetch project
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
       - name: Verify
         run: emcc -v
-      - name: install tools  
+      - name: check result
         run: ls -la
