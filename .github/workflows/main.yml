@@ -33,4 +33,4 @@ jobs:
       - name: check details
         run: ls -la ./liblouis
       - name: configure
-        run: emconfigure ./liblouis/
+        run: emconfigure ./liblouis/configure
