@@ -29,5 +29,6 @@ jobs:
         run: emcc -v
       - name: check result
         run: ls -la
+        run: ls -la ./liblouis
       - name: configure
         run: emconfigure ./liblouis/
