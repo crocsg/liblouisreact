@@ -1,3 +1,0 @@
-[submodule "liblouis"]
-	path = liblouis
-	url = git@github.com:crocsg/liblouis.git
