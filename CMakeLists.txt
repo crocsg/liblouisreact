@@ -7,9 +7,10 @@ set(CMAKE_SYSTEM_NAME Emscripten)
 project(${PROJECT_NAME})
 
 add_definitions(-DEMSCRIPTEM_SUPPORT)
-add_definitions(-DEMSCRIPTEM_REACT_SUPPORT)
 add_definitions(-DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=$ENV{EMSDK_NODE})
+
+add_compile_definitions(EMSCRIPTEM_SUPPORT)
 
 file(GLOB_RECURSE ENCODED 
    generated/*.c 
