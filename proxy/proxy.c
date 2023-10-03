@@ -8,9 +8,6 @@
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
 #pragma message ("EMSCRIPTEN SUPPORT ENABLED")
-
-jhhjg gjhgjhgj ghj gjgjg
-lkjjlk jlkj lk
 #endif
 
 #include "loudatabase.h"
