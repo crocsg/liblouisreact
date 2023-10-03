@@ -10,7 +10,7 @@ add_definitions(-DEMSCRIPTEM_SUPPORT)
 add_definitions(-DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=$ENV{EMSDK_NODE})
 
-add_compile_definitions(EMSCRIPTEM_SUPPORT)
+#add_compile_definitions(EMSCRIPTEM_SUPPORT)
 
 file(GLOB_RECURSE ENCODED 
    generated/*.c 

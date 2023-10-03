@@ -3,14 +3,19 @@
 #include <string.h>
 #include <memory.h>
 
-#ifdef __EMSCRIPTEN__
+
+#ifdef EMSCRIPTEM_SUPPORT
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
 #pragma message ("EMSCRIPTEN SUPPORT ENABLED")
+
+#pragma error ("for test")
 #endif
+
 #include "loudatabase.h"
 #include "internal.h"
 #include "emfile.h"
+
 
 static int _error;
 
