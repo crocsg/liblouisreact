@@ -24,7 +24,7 @@ int main (void)
         }
     }
 }
-#endif
+
 
 
 
@@ -59,3 +59,4 @@ widechar* EXPORT_CALL  get_str (void)
     memcpy (ptr, buf, (len + 1) * 4);
     return (ptr);
 }
+#endif
