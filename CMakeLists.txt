@@ -1,4 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
+
 set (PROJECT_NAME "liblouisreact")
 
 set(CMAKE_SYSTEM_NAME Emscripten)
@@ -26,7 +27,7 @@ add_executable(${PROJECT_NAME}
     liblouis/liblouis/logging.c				
     liblouis/liblouis/utils.c				
     liblouis/liblouis/maketable.c
-    addons/simple.c
+    
     proxy/emfile.c
     proxy/emfile.h
     proxy/test.c
