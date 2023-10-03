@@ -3,11 +3,11 @@
     "f2c": [
         "*.*"
     ],
-    "srcdir":"./liblouisreact/liblouis/tables/",
-    "dstdir":"./liblouisreact/generated/",
+    "srcdir":"/home/liblouisreact/liblouis/tables/",
+    "dstdir":"/home/liblouisreact/generated/",
 
-    "db_header":"./liblouisreact/database/loudatabase.h",
-    "db_implement":"./liblouisreact/database/loudatabase.c",
+    "db_header":"/home/liblouisreact/database/loudatabase.h",
+    "db_implement":"/home/liblouisreact/database/loudatabase.c",
     "db_type":"lou_dbfile",
     "db_name":"lou_database",
     "db_table_filter":[
