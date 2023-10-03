@@ -37,6 +37,10 @@ char* EXPORT_CALL loureact_get_table_description (uint16_t i)
 {
     if (i < LOU_DATABASE_INFO_NBR)
         return (lou_database_info[i].desc);
+    else
+    {
+        _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_description index out of bound =>%d\n", i);
+    }
     return NULL;
 }
 
