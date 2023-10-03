@@ -82,7 +82,7 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
     memset (pout, 0, len * sizeof(widechar) * 2);
     int result = lou_translateString(tblist, src, &len,
 		pout, &outlen, NULL, NULL, 0);
-        
+    _lou_logMessage(LOU_LOG_WARN, "lou_translateString ok");
     _status = result;
 
     return pout;
