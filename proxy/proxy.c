@@ -81,6 +81,7 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string table=%s", tblist);
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len=%d", len);
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len bytes=%d", len * sizeof(widechar) * 2);
+    
 
     _status = 0;
     memset (pout, 0, len * sizeof(widechar) * 2);

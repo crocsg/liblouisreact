@@ -125,13 +125,13 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
                         mode += 1
 
                     if len(displayname) > 0:
-                        print ("{:10} {:8} {:8} {:25} {}".format(language, region, ltype, f["filename"], displayname))
+                        #print ("{:10} {:8} {:8} {:25} {}".format(language, region, ltype, f["filename"], displayname))
                         fout.write ("\t{ ")    
                         fout.write ("\"{0}\",".format(f["filename"]))
                         fout.write ("\"{0}\",".format(displayname))
                         fout.write ("\"{0}\",".format(language))
                         fout.write ("\"{0}\",".format(region))
-                        fout.write ("0x{0:04x},".format(mode))
+                        fout.write ("0x{0:04x}".format(mode))
                         fout.write (" },\n")   
                         count += 1 
                     break
