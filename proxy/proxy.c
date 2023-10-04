@@ -22,7 +22,6 @@ uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 {
     lou_setLogLevel(LOU_LOG_ALL); 
 	
-}
     return (LOU_DATABASE_INFO_NBR);
 }
 
