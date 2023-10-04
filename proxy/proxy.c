@@ -25,6 +25,7 @@ uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 
 char* EXPORT_CALL loureact_get_table_fname (uint16_t i)
 {
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_fname\n");    
     if (i < LOU_DATABASE_INFO_NBR)
     {
         _lou_logMessage(LOU_LOG_WARN, "fname =>%s\n", lou_database_info[i].fname);
@@ -35,6 +36,7 @@ char* EXPORT_CALL loureact_get_table_fname (uint16_t i)
 
 char* EXPORT_CALL loureact_get_table_description (uint16_t i)
 {
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_description\n");    
     if (i < LOU_DATABASE_INFO_NBR)
         return (lou_database_info[i].desc);
     else
@@ -46,6 +48,7 @@ char* EXPORT_CALL loureact_get_table_description (uint16_t i)
 
 char* EXPORT_CALL loureact_get_table_lang (uint16_t i)
 {
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_lang\n");    
     if (i < LOU_DATABASE_INFO_NBR)
         return (lou_database_info[i].lang);
     return NULL;    
@@ -53,6 +56,7 @@ char* EXPORT_CALL loureact_get_table_lang (uint16_t i)
 
 char* EXPORT_CALL loureact_get_table_region (uint16_t i)
 {
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_region\n");    
     if (i < LOU_DATABASE_INFO_NBR)
         return (lou_database_info[i].region);
     return NULL;
@@ -60,6 +64,7 @@ char* EXPORT_CALL loureact_get_table_region (uint16_t i)
 
 uint16_t EXPORT_CALL loureact_get_table_flags (uint16_t i)
 {
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_flags\n");    
     if (i < LOU_DATABASE_INFO_NBR)
         return (lou_database_info[i].flags);
     return 0;
@@ -74,8 +79,10 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
 {
     widechar* pout = malloc(len * sizeof(widechar) * 2);
     int outlen = len * 2;
-    char  tblist[256];
+    char  tblist[1024];
     
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_flags\n");    
+
     snprintf (tblist, sizeof(tblist), "unicode.dis,%s", lou_database_info[tblid].fname);
        
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string table=%s", tblist);
