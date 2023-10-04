@@ -40,12 +40,13 @@ static char _asked_file[8192] = {0};
 int emstat(const char *path, struct stat *buf)
 {
     lou_dbfile* pdata = NULL;
-
+    _lou_logMessage(LOU_LOG_WARN, "fstat %s", filename);
     // find the requested file
     for (int i = 0; i < LOU_DBFILE_NBR; i++)
     {
         if (strcmp (lou_database[i].fname, path) == 0)
         {
+            _lou_logMessage(LOU_LOG_WARN, "fstat %s=>%s", filename, lou_database[i].fname);
             pdata = &lou_database[i];
             break;
         }
@@ -70,7 +71,7 @@ LOU_FHANDLE *emfopen(const char *filename, const char *mode)
         
         if (strcmp (lou_database[i].fname, filename) == 0)
         {
-            _lou_logMessage(LOU_LOG_WARN, "fopen %s=>%s\n", filename, lou_database[i].fname);
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s=>%s", filename, lou_database[i].fname);
             pdata = &lou_database[i];
             break;
         }

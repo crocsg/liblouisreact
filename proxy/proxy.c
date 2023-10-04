@@ -20,6 +20,9 @@ extern lou_dbfile_info lou_database_info[];
 static int _status = 0;
 uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 {
+    lou_setLogLevel(LOU_LOG_ALL); 
+	
+}
     return (LOU_DATABASE_INFO_NBR);
 }
 
@@ -93,7 +96,7 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
     memset (pout, 0, len * sizeof(widechar) * 2);
     int result = lou_translateString(tblist, src, &len,
 		pout, &outlen, NULL, NULL, 0);
-        
+
     _lou_logMessage(LOU_LOG_WARN, "lou_translateString ok %d", result);
     _status = result;
 
