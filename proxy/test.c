@@ -19,6 +19,11 @@
 
 static int _error;
 
+int EXPORT_CALL test_add(int x, int y)
+{
+    return (x+y);
+}
+
 int EXPORT_CALL test_lasterror (void)
 {
     return _error;
