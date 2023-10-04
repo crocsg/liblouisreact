@@ -55,5 +55,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
     -s ENVIRONMENT='web' \
     -s EXPORT_NAME='createModule' \
     -s USE_ES6_IMPORT_META=0 \
-    -s EXPORTED_FUNCTIONS='[\"_malloc\", \"_free\", \"_test_file\", \"_test_lasterror\", \"_test_translate_fr\", \"unicode_translate_string\"]' \
+    -s EXPORTED_FUNCTIONS='[\"_malloc\", \"_free\", \"_test_file\", \"_test_lasterror\", \"_test_translate_fr\", \"_test_add\"]' \
     -s EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"stringToUTF32\", \"UTF32ToString\", \"lengthBytesUTF32\", \"AsciiToString\"]'  ")
