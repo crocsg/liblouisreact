@@ -20,7 +20,7 @@ extern lou_dbfile_info lou_database_info[];
 static int _status = 0;
 uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 {
-    lou_setLogLevel(LOU_LOG_ALL); 
+    lou_setLogLevel(LOU_LOG_OFF); 
 	
     return (LOU_DATABASE_INFO_NBR);
 }
