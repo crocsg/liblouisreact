@@ -17,6 +17,6 @@
         "*.utb"
     ],
     "db_display_filter":[
-        ".dis"
+        "*.dis"
     ]
 }
