@@ -1,7 +1,7 @@
 {
     "base":"louistable",
     "f2c": [
-        "unicode.d",
+        "unicode.dis",
         "fr*"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
