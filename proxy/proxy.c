@@ -4,10 +4,10 @@
 #include <string.h>
 #include <memory.h>
 
-#ifdef EMSCRIPTEM_SUPPORT
+#ifdef EMSCRIPTEN_SUPPORT
 #include "emscripten.h"
+#include "emscripten/stack.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
-#pragma message ("EMSCRIPTEN SUPPORT ENABLED")
 #endif
 
 #include "loudatabase.h"
@@ -100,6 +100,10 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
     _status = result;
 
     return pout;
+}
+size_t EXPORT_CALL loureact_get_stack_free (void)
+{
+    return (emscripten_stack_get_free();)
 }
 
 
