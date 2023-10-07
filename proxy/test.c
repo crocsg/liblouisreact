@@ -4,12 +4,9 @@
 #include <memory.h>
 
 
-#ifdef EMSCRIPTEM_SUPPORT
+#ifdef EMSCRIPTEN_SUPPORT
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
-#pragma message ("EMSCRIPTEN SUPPORT ENABLED")
-
-#pragma error ("for test")
 #endif
 
 #include "loudatabase.h"
