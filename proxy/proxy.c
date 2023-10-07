@@ -103,7 +103,7 @@ widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tbli
 }
 size_t EXPORT_CALL loureact_get_stack_free (void)
 {
-    return (emscripten_stack_get_free();)
+    return (emscripten_stack_get_free());
 }
 
 
