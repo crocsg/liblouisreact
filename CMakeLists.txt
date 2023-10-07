@@ -48,8 +48,8 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 
 
 
-set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "--no-entry  \
-    --pre-js -Oz\
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz --no-entry  \
+    --pre-js \
     ${CMAKE_SOURCE_DIR}/addons/locateFile.js \
     -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
