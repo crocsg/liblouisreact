@@ -23,8 +23,9 @@
 #ifdef __EMSCRIPTEN__
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
-#pragma message ("EMSCRIPTEN SUPPORT ENABLED")
+
 #endif
+
 #include "loudatabase.h"
 #include "internal.h"
 
