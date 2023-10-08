@@ -16,6 +16,7 @@
         "en-ueb-math.ctb",
         "en-ueb-g1.ctb",
         "es.tbl",
+        "es-g1.ctb",
         "de-comp6.utb"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
