@@ -11,10 +11,12 @@
         "braille-patterns.cti",
         "fr-bfu-comp68.cti",
         "es-chardefs.cti",
+        "en-ueb-chardefs.uti",
         "fr-bfu-comp6.utb",
-        "en-ueb*",
-        "es*",
-        "de*"
+        "en-ueb-math.ctb",
+        "en-ueb-g1.ctb",
+        "es.tbl",
+        "de-comp6.utb"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
     "dstdir":"/home/liblouisreact/generated/",
