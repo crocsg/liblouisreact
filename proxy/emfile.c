@@ -72,20 +72,23 @@ LOU_FHANDLE *emfopen(const char *filename, const char *mode)
         
         if (strcmp (lou_database[i].fname, filename) == 0)
         {
-            _lou_logMessage(LOU_LOG_WARN, "fopen %s=>%s", filename, lou_database[i].fname);
             pdata = &lou_database[i];
             break;
         }
     }
 
     if (pdata == NULL)
+    {
+        _lou_logMessage(LOU_LOG_WARN, "fopen %s not found", filename)
         return NULL;
+    }
 
     // find a free handle
     for (int i = 0; i < ARRAYSIZE(_filesystem); i++)
     {
         if (_filesystem[i].pdata == NULL)
         {
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s", filename);
             _filesystem[i].pdata = pdata->data;
             _filesystem[i].size = *(pdata->size);
             _filesystem[i].offset = 0;
