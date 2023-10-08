@@ -2,12 +2,16 @@
     "base":"louistable",
     "f2c": [
         "unicode.dis",
-        "*.uti",
-        
-        
-        "*.cti",
-        
-        "fr*",
+        "spaces.uti",
+        "latinLetterDef6Dots.uti",
+        "latinLetterDef8Dots.uti",
+        "digits6DotsPlusDot6.uti",
+        "litdigits6DotsPlusDot6.uti",
+        "IPA-unicode-range.uti",
+        "braille-patterns.cti",
+        "fr-bfu-comp68.cti",
+        "es-chardefs.cti",
+        "fr-bfu-comp6.utb",
         "en-ueb*",
         "es*",
         "de*"
