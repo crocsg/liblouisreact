@@ -53,7 +53,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz --no-entry  \
     ${CMAKE_SOURCE_DIR}/addons/locateFile.js \
     -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
-    
+    -s STACK_SIZE=5242880 \
     -s EXPORT_NAME='createModule' \
     -s USE_ES6_IMPORT_META=0 \
     -s EXPORTED_FUNCTIONS='[\"_malloc\", \"_free\", \"_test_file\", \"_test_lasterror\", \"_test_translate_fr\", \"_test_add\"]' \
