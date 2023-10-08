@@ -79,7 +79,7 @@ LOU_FHANDLE *emfopen(const char *filename, const char *mode)
 
     if (pdata == NULL)
     {
-        _lou_logMessage(LOU_LOG_WARN, "fopen %s not found", filename)
+        _lou_logMessage(LOU_LOG_WARN, "fopen %s not found", filename);
         return NULL;
     }
 
