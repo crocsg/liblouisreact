@@ -23,6 +23,7 @@
         "es-g1.ctb",
         "de-comp6.utb",
         "it-it-comp6.utb",
+        "it.tbl",
         "text_nabcc.dis"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
