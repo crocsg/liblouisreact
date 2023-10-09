@@ -24,7 +24,9 @@
         "de-comp6.utb",
         "it-it-comp6.utb",
         "it.tbl",
-        "text_nabcc.dis"
+        "text_nabcc.dis",
+        "pt-pt-g*",
+        "pt.tbl"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
     "dstdir":"/home/liblouisreact/generated/",
