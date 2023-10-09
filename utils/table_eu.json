@@ -9,6 +9,7 @@
         "litdigits6DotsPlusDot6.uti",
         "loweredDigits6Dots.uti",
         "litdigits6Dots.uti",
+        "digits6Dots.uti",
         "latinUppercaseComp6.uti",
         "IPA-unicode-range.uti",
         "braille-patterns.cti",
@@ -21,7 +22,8 @@
         "es.tbl",
         "es-g1.ctb",
         "de-comp6.utb",
-        "it*"
+        "it-it-comp6.utb",
+        "text_nabcc.dis"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
     "dstdir":"/home/liblouisreact/generated/",
