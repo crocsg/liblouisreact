@@ -20,7 +20,8 @@
         "en-ueb-g1.ctb",
         "es.tbl",
         "es-g1.ctb",
-        "de-comp6.utb"
+        "de-comp6.utb",
+        "it*"
     ],
     "srcdir":"/home/liblouisreact/liblouis/tables/",
     "dstdir":"/home/liblouisreact/generated/",
