@@ -9,6 +9,7 @@ project(${PROJECT_NAME})
 add_definitions(-DEMSCRIPTEN_SUPPORT)
 add_definitions(-DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake)
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=$ENV{EMSDK_NODE})
+add_definitions(-DLOU_STREAM_OVERRIDE)
 
 #add_compile_definitions(EMSCRIPTEN_SUPPORT)
 
