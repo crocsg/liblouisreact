@@ -11,7 +11,6 @@ add_definitions(-DCMAKE_TOOLCHAIN_FILE=$ENV{EMSDK}/upstream/emscripten/cmake/Mod
 add_definitions(-DCMAKE_CROSSCOMPILING_EMULATOR=$ENV{EMSDK_NODE})
 add_definitions(-DLOU_STREAM_OVERRIDE)
 
-#add_compile_definitions(EMSCRIPTEN_SUPPORT)
 
 file(GLOB_RECURSE ENCODED 
    generated/*.c 

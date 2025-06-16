@@ -18,7 +18,15 @@
 #define __EMFILE_H
 
 #include <sys/stat.h>
+#include "emscripten.h"
+#include "emscripten/stack.h"
 
+typedef struct _EMFILE 
+{
+	uint8_t* 	pdata;
+	size_t 	offset;
+	size_t	size;
+} EMFILE;
 
 LOU_FHANDLE *emfopen(const char *filename, const char *mode);
 int emfgetc(LOU_FHANDLE *stream);
