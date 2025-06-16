@@ -33,6 +33,7 @@ add_executable(${PROJECT_NAME}
     proxy/emfile.h
     proxy/test.c
     proxy/proxy.c
+    proxy/lou_file_override.h
     database/loudatabase.c
     
     ${ENCODED}
