@@ -33,4 +33,6 @@ int emfgetc(LOU_FHANDLE *stream);
 int emfclose(LOU_FHANDLE *stream);
 int emstat(const char *path, struct stat *buf);
 
+#pragma message ("EMSCRIPTEM EMFILE.H LOADED")
+
 #endif // __EMFILE_H
