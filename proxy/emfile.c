@@ -36,7 +36,7 @@ extern lou_dbfile lou_database[];
 
 // file handles
 static LOU_FHANDLE _filesystem[EMFILE_HANDLE_NBR] = {0};
-static char _asked_file[8192] = {0};
+//static char _asked_file[8192] = {0};
 
 int emstat(const char *path, struct stat *buf)
 {
