@@ -3,6 +3,7 @@
 
 #pragma message ("EMSCRIPTEM_SUPPORT ENABLED")
 
+#include "emfile.h"
 
 #define LOU_FHANDLE EMFILE
 #define LOU_FGETC emfgetc
