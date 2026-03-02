@@ -491,6 +491,8 @@ extern uint8_t ja__kantenji__ucs2__utb[];
 extern size_t ja__kantenji__ucs2__utb_size;
 extern uint8_t ja__kantenji__utb[];
 extern size_t ja__kantenji__utb_size;
+extern uint8_t ja__rokutenkanji__utb[];
+extern size_t ja__rokutenkanji__utb_size;
 extern uint8_t ka__in__g1__utb[];
 extern size_t ka__in__g1__utb_size;
 extern uint8_t ka__utb[];
@@ -1159,6 +1161,7 @@ lou_dbfile lou_database[] = {
 	{ "iu-ca-g1.ctb",iu__ca__g1__ctb, &iu__ca__g1__ctb_size },
 	{ "ja-kantenji-ucs2.utb",ja__kantenji__ucs2__utb, &ja__kantenji__ucs2__utb_size },
 	{ "ja-kantenji.utb",ja__kantenji__utb, &ja__kantenji__utb_size },
+	{ "ja-rokutenkanji.utb",ja__rokutenkanji__utb, &ja__rokutenkanji__utb_size },
 	{ "ka-in-g1.utb",ka__in__g1__utb, &ka__in__g1__utb_size },
 	{ "ka.utb",ka__utb, &ka__utb_size },
 	{ "kannada.cti",kannada__cti, &kannada__cti_size },
@@ -1488,6 +1491,7 @@ lou_dbfile_info lou_database_info[] = {
 	{ "iu-ca-g1.ctb","Inuktitut braille","iu","",0x0000 },
 	{ "ja-kantenji-ucs2.utb","Kantenji","ja","",0x0000 },
 	{ "ja-kantenji.utb","Kantenji","ja","",0x0000 },
+	{ "ja-rokutenkanji.utb","Rokuten Kanji","ja","",0x0000 },
 	{ "ka.utb","Georgian braille","ka","",0x0000 },
 	{ "kha.tbl","Khasi braille","kha","",0x0000 },
 	{ "kk.utb","Kazakh braille","kk","",0x0000 },
