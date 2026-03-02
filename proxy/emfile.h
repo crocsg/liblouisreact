@@ -28,9 +28,9 @@ typedef struct _EMFILE
 	size_t	size;
 } EMFILE;
 
-LOU_FHANDLE *emfopen(const char *filename, const char *mode);
-int emfgetc(LOU_FHANDLE *stream);
-int emfclose(LOU_FHANDLE *stream);
+EMFILE *emfopen(const char *filename, const char *mode);
+int emfgetc(EMFILE *stream);
+int emfclose(EMFILE *stream);
 int emstat(const char *path, struct stat *buf);
 
 #pragma message ("EMSCRIPTEM EMFILE.H LOADED")

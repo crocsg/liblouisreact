@@ -16,6 +16,8 @@ file(GLOB_RECURSE ENCODED
    generated/*.c 
 )
 
+message ("detected liblouis tables" "${ENCODED}")
+
 set(CMAKE_EXECUTABLE_SUFFIX ".mjs")
 add_executable(${PROJECT_NAME}
   
