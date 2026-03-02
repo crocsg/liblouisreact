@@ -27,7 +27,7 @@ uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 
 char* EXPORT_CALL loureact_get_table_fname (uint16_t i)
 {
-    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_fname");    
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_table_fname %d",i);    
     if (i < LOU_DATABASE_INFO_NBR)
     {
         _lou_logMessage(LOU_LOG_WARN, "fname =>%s", lou_database_info[i].fname);
