@@ -18,9 +18,19 @@ typedef unsigned int widechar;
 extern lou_dbfile_info lou_database_info[];
 
 static int _status = 0;
+
+
+const char* EXPORT_CALL loureact_get_version (void)
+{
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_version call");
+    const char* pstrversion = lou_version();
+    _lou_logMessage(LOU_LOG_WARN, "loureact_get_version %s",pstrversion);    
+
+    return pstrversion;
+}
 uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 {
-    lou_setLogLevel(LOU_LOG_OFF); 
+    lou_setLogLevel(LOU_LOG_INFO); 
 	
     return (LOU_DATABASE_INFO_NBR);
 }
