@@ -30,7 +30,7 @@ const char* EXPORT_CALL loureact_get_version (void)
 }
 uint32_t EXPORT_CALL loureact_get_table_nbr (void)
 {
-    lou_setLogLevel(LOU_LOG_INFO); 
+    lou_setLogLevel(LOU_LOG_OFF); 
 	
     return (LOU_DATABASE_INFO_NBR);
 }
