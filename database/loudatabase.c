@@ -237,6 +237,10 @@ extern uint8_t en__chardefs__cti[];
 extern size_t en__chardefs__cti_size;
 extern uint8_t en__chess__ctb[];
 extern size_t en__chess__ctb_size;
+extern uint8_t en__g3__patterns__dic[];
+extern size_t en__g3__patterns__dic_size;
+extern uint8_t en__g3__ctb[];
+extern size_t en__g3__ctb_size;
 extern uint8_t en__gb__comp8__ctb[];
 extern size_t en__gb__comp8__ctb_size;
 extern uint8_t en__gb__g1__utb[];
@@ -583,6 +587,8 @@ extern uint8_t marburg_single_cell_defs__cti[];
 extern size_t marburg_single_cell_defs__cti_size;
 extern uint8_t marburg_unicode_defs__cti[];
 extern size_t marburg_unicode_defs__cti_size;
+extern uint8_t mk__g1__utb[];
+extern size_t mk__g1__utb_size;
 extern uint8_t ml__in__g1__utb[];
 extern size_t ml__in__g1__utb_size;
 extern uint8_t ml__tbl[];
@@ -1034,6 +1040,8 @@ lou_dbfile lou_database[] = {
 	{ "el.ctb",el__ctb, &el__ctb_size },
 	{ "en-chardefs.cti",en__chardefs__cti, &en__chardefs__cti_size },
 	{ "en-chess.ctb",en__chess__ctb, &en__chess__ctb_size },
+	{ "en-g3-patterns.dic",en__g3__patterns__dic, &en__g3__patterns__dic_size },
+	{ "en-g3.ctb",en__g3__ctb, &en__g3__ctb_size },
 	{ "en-gb-comp8.ctb",en__gb__comp8__ctb, &en__gb__comp8__ctb_size },
 	{ "en-gb-g1.utb",en__gb__g1__utb, &en__gb__g1__utb_size },
 	{ "en-GB-g2.ctb",en__GB__g2__ctb, &en__GB__g2__ctb_size },
@@ -1207,6 +1215,7 @@ lou_dbfile lou_database[] = {
 	{ "mao-nz-g1.ctb",mao__nz__g1__ctb, &mao__nz__g1__ctb_size },
 	{ "marburg_single_cell_defs.cti",marburg_single_cell_defs__cti, &marburg_single_cell_defs__cti_size },
 	{ "marburg_unicode_defs.cti",marburg_unicode_defs__cti, &marburg_unicode_defs__cti_size },
+	{ "mk-g1.utb",mk__g1__utb, &mk__g1__utb_size },
 	{ "ml-in-g1.utb",ml__in__g1__utb, &ml__in__g1__utb_size },
 	{ "ml.tbl",ml__tbl, &ml__tbl_size },
 	{ "mn-in-g1.utb",mn__in__g1__utb, &mn__in__g1__utb_size },
@@ -1437,6 +1446,7 @@ lou_dbfile_info lou_database_info[] = {
 	{ "de-g2.ctb","German contracted braille","de","",0x0000 },
 	{ "dra.tbl","Dravidian computer braille","dra","",0x0001 },
 	{ "el.ctb","Greek braille","el","",0x0000 },
+	{ "en-g3.ctb","English grade 3 contracted braille","","",0x0000 },
 	{ "en-gb-comp8.ctb","English computer braille as used in the U.K.","en","en-GB",0x0001 },
 	{ "en-gb-g1.utb","English uncontracted braille as used in the U.K.","en","en-GB",0x0000 },
 	{ "en-nabcc.utb","North American Braille Computer Code","en","",0x0001 },
@@ -1511,6 +1521,7 @@ lou_dbfile_info lou_database_info[] = {
 	{ "lt.ctb","Lithuanian 8-dot braille","lt","",0x0000 },
 	{ "lv.tbl","Latvian braille","lv","",0x0000 },
 	{ "mao-nz-g1.ctb","Maori braille","mi","",0x0000 },
+	{ "mk-g1.utb","Macedonian braille","mk","",0x0000 },
 	{ "ml.tbl","Malayalam braille","ml","",0x0000 },
 	{ "mn-MN-g1.utb","Mongolian uncontracted braille","mn","",0x0000 },
 	{ "mn-MN-g2.ctb","Mongolian contracted braille","mn","",0x0000 },
