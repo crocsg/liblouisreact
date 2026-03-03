@@ -87,6 +87,36 @@ int EXPORT_CALL unicode_translate_get_status (void)
     return (_status);
 }
 
+widechar* EXPORT_CALL unicode_backtranslate_string (widechar* brlsrc, int len, int tblid)
+{
+    widechar* pout = malloc(len * sizeof(widechar) * 2);
+    int outlen = len * 2;
+    char  tblist[1024];
+
+    snprintf (tblist, sizeof(tblist), "unicode.dis,%s", lou_database_info[tblid].fname);
+       
+    _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string table=%s", tblist);
+    _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len=%d", len);
+    _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len bytes=%d", len * sizeof(widechar) * 2);
+    
+    _status = 0;
+    memset (pout, 0, len * sizeof(widechar) * 2);
+        /*
+        int EXPORT_CALL
+        lou_backTranslateString(const char *tableList, const widechar *inbuf, int *inlen,
+		    widechar *outbuf, int *outlen, formtype *typeform, char *spacing, int modex) {
+	        return lou_backTranslate(tableList, inbuf, inlen, outbuf, outlen, typeform, spacing,
+			NULL, NULL, NULL, modex);
+            }
+        */
+    int result = lou_backTranslateString (tblist, brlsrc, &len,
+		pout, &outlen, NULL, NULL, 0);
+
+    _lou_logMessage(LOU_LOG_WARN, "lou_backTranslateString ok %d", result);
+    _status = result; // save error if anny
+
+    return pout; // return back translated string
+}
 widechar* EXPORT_CALL unicode_translate_string (widechar* src, int len, int tblid)
 {
     widechar* pout = malloc(len * sizeof(widechar) * 2);
