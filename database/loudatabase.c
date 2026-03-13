@@ -309,6 +309,8 @@ extern uint8_t es__old__dis[];
 extern size_t es__old__dis_size;
 extern uint8_t es__tbl[];
 extern size_t es__tbl_size;
+extern uint8_t et__6dot__utb[];
+extern size_t et__6dot__utb_size;
 extern uint8_t et__g0__utb[];
 extern size_t et__g0__utb_size;
 extern uint8_t et__ctb[];
@@ -487,8 +489,6 @@ extern uint8_t it__it__comp6__utb[];
 extern size_t it__it__comp6__utb_size;
 extern uint8_t it__it__comp8__utb[];
 extern size_t it__it__comp8__utb_size;
-extern uint8_t it__tbl[];
-extern size_t it__tbl_size;
 extern uint8_t iu__ca__g1__ctb[];
 extern size_t iu__ca__g1__ctb_size;
 extern uint8_t ja__kantenji__ucs2__utb[];
@@ -1076,6 +1076,7 @@ lou_dbfile lou_database[] = {
 	{ "es-new.dis",es__new__dis, &es__new__dis_size },
 	{ "es-old.dis",es__old__dis, &es__old__dis_size },
 	{ "es.tbl",es__tbl, &es__tbl_size },
+	{ "et-6dot.utb",et__6dot__utb, &et__6dot__utb_size },
 	{ "et-g0.utb",et__g0__utb, &et__g0__utb_size },
 	{ "et.ctb",et__ctb, &et__ctb_size },
 	{ "et.tbl",et__tbl, &et__tbl_size },
@@ -1165,7 +1166,6 @@ lou_dbfile lou_database[] = {
 	{ "is.tbl",is__tbl, &is__tbl_size },
 	{ "it-it-comp6.utb",it__it__comp6__utb, &it__it__comp6__utb_size },
 	{ "it-it-comp8.utb",it__it__comp8__utb, &it__it__comp8__utb_size },
-	{ "it.tbl",it__tbl, &it__tbl_size },
 	{ "iu-ca-g1.ctb",iu__ca__g1__ctb, &iu__ca__g1__ctb_size },
 	{ "ja-kantenji-ucs2.utb",ja__kantenji__ucs2__utb, &ja__kantenji__ucs2__utb_size },
 	{ "ja-kantenji.utb",ja__kantenji__utb, &ja__kantenji__utb_size },
@@ -1463,6 +1463,7 @@ lou_dbfile_info lou_database_info[] = {
 	{ "Es-Es-G0.utb","Spanish computer braille","es","",0x0001 },
 	{ "es-g2.ctb","Spanish contracted braille","es","",0x0000 },
 	{ "es.tbl","Spanish uncontracted braille","es","",0x0000 },
+	{ "et-6dot.utb","Estonian braille","et","",0x0000 },
 	{ "et.tbl","Estonian computer braille","et","",0x0001 },
 	{ "fa-ir-comp8.ctb","Persian computer braille","fa","",0x0001 },
 	{ "fa-ir-g1.utb","Persian braille","fa","",0x0000 },
@@ -1496,8 +1497,8 @@ lou_dbfile_info lou_database_info[] = {
 	{ "hy.tbl","Armenian computer braille","hy","",0x0001 },
 	{ "IPA.utb","International Phonetic Alphabet braille","*-fonipa","",0x0000 },
 	{ "is.tbl","Icelandic braille","is","",0x0000 },
+	{ "it-it-comp6.utb","Italian braille","it","",0x0000 },
 	{ "it-it-comp8.utb","Italian computer braille","it","",0x0001 },
-	{ "it.tbl","Italian braille","it","",0x0000 },
 	{ "iu-ca-g1.ctb","Inuktitut braille","iu","",0x0000 },
 	{ "ja-kantenji-ucs2.utb","Kantenji","ja","",0x0000 },
 	{ "ja-kantenji.utb","Kantenji","ja","",0x0000 },
