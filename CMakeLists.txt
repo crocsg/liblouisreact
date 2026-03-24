@@ -58,7 +58,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz --no-entry  \
     -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
     -s STACK_SIZE=5242880 \
-    -s USE_ES6_IMPORT_META=0 \
     -s EXPORT_NAME='createModule' \
     -s EXPORTED_FUNCTIONS='[\"_malloc\", \"_free\"]' \
     -s EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"stringToUTF32\", \"UTF32ToString\", \"lengthBytesUTF32\", \"AsciiToString\"]'  ")
