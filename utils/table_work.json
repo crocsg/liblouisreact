@@ -1,0 +1,21 @@
+{
+    "base":"louistable",
+    "f2c": [
+        "*.*"
+    ],
+    "srcdir":"/home/sgodin/work/liblouisreact/liblouis/tables/",
+    "dstdir":"/home/sgodin/work/liblouisreact/generated/",
+
+    "db_header":"/home/sgodin/work/liblouisreact/database/loudatabase.h",
+    "db_implement":"/home/sgodin/work/liblouisreact/database/loudatabase.c",
+    "db_type":"lou_dbfile",
+    "db_name":"lou_database",
+    "db_table_filter":[
+        "*.tbl",
+        "*.ctb",
+        "*.utb"
+    ],
+    "db_display_filter":[
+        "*.dis"
+    ]
+}
