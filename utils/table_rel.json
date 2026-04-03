@@ -1,0 +1,21 @@
+{
+    "base":"louistable",
+    "f2c": [
+        "*.*"
+    ],
+    "srcdir":"./liblouis/tables/",
+    "dstdir":"./generated/",
+
+    "db_header":"./database/loudatabase.h",
+    "db_implement":"./database/loudatabase.c",
+    "db_type":"lou_dbfile",
+    "db_name":"lou_database",
+    "db_table_filter":[
+        "*.tbl",
+        "*.ctb",
+        "*.utb"
+    ],
+    "db_display_filter":[
+        "*.dis"
+    ]
+}
