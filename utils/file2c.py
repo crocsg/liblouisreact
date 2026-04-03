@@ -3,6 +3,7 @@ import os
 import json
 import glob
 import fnmatch
+import bz2
 
 NBCOL = 8
 
@@ -32,20 +33,24 @@ def write_start (stream, filename):
 
 def getDisplayName (path):
     display = ""
-    with open(path,"rt") as fin:
+    
+    with open(path,"rt", encoding="utf8") as fin:
         while True:
             line = fin.readline()
+            
             if not line:
                 break
             if line.find ("display-name") >= 0:
                 field = line.split (':')
+                
                 if len (field) > 1:
                     display = field[1].strip ()
+                    break
     return display            
 
 def GetTag (path, stag):
     tag = ""
-    with open(path,"rt") as fin:
+    with open(path,"rt", encoding="utf8") as fin:
         while True:
             line = fin.readline()
             if not line:
@@ -55,35 +60,45 @@ def GetTag (path, stag):
                 
                 if len (field) > 1:
                     tag = field[1].strip ()
+                    break
     return tag            
 
+def file2c_write_var (fout, varname, data):
+    fout.write ("uint8_t {0}[]".format(varname))
+    fout.write ("={\n")
+    size = len(data)
+    
+    col = 0
+    for i in range (size):
+        fout.write ("0x{:02x}".format (data[i]))
+        if i != size - 1:
+            if i % NBCOL == 0 and  i > 0:
+                fout.write (",\n")
+            else:
+                fout.write (",")
+        else:
+            fout.write ("\n")
+    
+    fout.write ("};\n")
+    fout.write ("size_t {0}_size=sizeof({0});\n".format(varname))
+    
 def file2c (pathfrom, pathto, varname, filename):
     with open(pathfrom,"rb") as fin:
         data = fin.read ()
-    
+    bzdata = bz2.compress(data)
+
     with open (pathto, "w") as fout:
         write_header(fout, filename)
         write_start(fout, filename)
 
-        fout.write ("uint8_t {0}[]".format(varname))
-        fout.write ("={\n")
-        size = len(data)
-        col = 0
-        for i in range (size):
-            fout.write ("0x{:02x}".format (data[i]))
-            if i != size - 1:
-                if i % NBCOL == 0 and  i > 0:
-                    fout.write (",\n")
-                else:
-                    fout.write (",")
-            else:
-                fout.write ("\n")
-        fout.write ("};\n")
-        fout.write ("size_t {0}_size=sizeof({0});\n".format(varname))
+        file2c_write_var (fout, varname, data)
+        fout.write ("\n")                    
+        file2c_write_var (fout, varname+"bz", bzdata)            
+    
+    return len(data)
 
 def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, config):
-    
-        
+            
     with open (implement, "w") as fout:
         write_header(fout, implement)
         write_start(fout, implement)
@@ -94,6 +109,9 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
         for f in generated:
             fout.write ("extern uint8_t {1}[];\n".format(dbtype, f["var"]))                
             fout.write ("extern size_t {0};\n".format(f["var"]+"_size"))                
+            fout.write ("extern uint8_t {1}[];\n".format(dbtype, f["var"]+"bz"))                
+            fout.write ("extern size_t {0};\n".format(f["var"]+"bz_size"))                
+            
 
         fout.write ("{0} {1}[] = ".format(dbtype, dbname))
         fout.write ("{\n")
@@ -101,8 +119,11 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
         for f in generated:
             fout.write ("\t{ ")    
             fout.write ("\"{0}\",".format(f["filename"]))
-            fout.write ("{0},".format(f["var"]))                
-            fout.write (" &{0}".format(f["var"]+"_size"))                
+            fout.write (" {0},".format(f["var"]))                
+            fout.write (" &{0},".format(f["var"]+"_size"))                
+            fout.write (" {0},".format(f["var"]+"bz"))                
+            fout.write (" &{0},".format(f["var"]+"bz_size")) 
+            fout.write (" {0}".format(f["usize"])) 
             fout.write (" },\n")    
         fout.write ("};\n")
         fout.write ("\n")
@@ -115,6 +136,7 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
         for f in generated:
             for filter in filters:
                 if fnmatch.fnmatch(f["filename"], filter):
+                    print ("analyze:", f["path"])
                     displayname = getDisplayName(f["path"])
                     language = GetTag (f["path"], "#+language")
                     region = GetTag (f["path"], "#+region")
@@ -135,6 +157,7 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
                         fout.write (" },\n")   
                         count += 1 
                     break
+
         fout.write ("};\n")
         fout.write ("\n")
         fout.write ("\n")
@@ -184,6 +207,9 @@ def build_database (generated, header, implement, dbname, dbtype, dbinfo_type, c
             fout.write ("\tchar *fname;\n")
             fout.write ("\tuint8_t* data;\n")
             fout.write ("\tsize_t* size;\n")
+            fout.write ("\tuint8_t* bzdata;\n")
+            fout.write ("\tsize_t* bzsize;\n")
+            fout.write ("\tsize_t bzusize;\n")
             fout.write ("} ")
             fout.write ("{0};\n".format (dbtype))
             fout.write ("\n")
@@ -222,11 +248,13 @@ def build (path):
                 filename = os.path.basename(file)
                 
                 print (file, dst)
-                file2c (file, dst, varname, filename)
-                generated.append ({"filename":filename, "var":varname, "src":file, "dst":dst ,"path":file})
+                usize = file2c (file, dst, varname, filename)
+                generated.append ({"filename":filename, "var":varname, "src":file, "dst":dst ,"path":file, "usize":usize})
 
-        
+        # sort database entries
         generated.sort(key=lambda filedata: filedata["filename"].lower())
+        
+        # build database
         build_database (generated, data["db_header"], data["db_implement"], data["db_name"], data["db_type"], data["db_type"] + "_info", data)
 
 if __name__ == "__main__":
