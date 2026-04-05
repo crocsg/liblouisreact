@@ -24,6 +24,8 @@
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
 
+#include <bzlib.h>
+
 #endif
 
 #include "loudatabase.h"
@@ -62,14 +64,74 @@ int emstat(const char *path, struct stat *buf)
     return (0);
 }
 
+LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
+{
+    lou_dbfile* pdata = NULL;
+    _lou_logMessage(LOU_LOG_WARN, "searching for %s file bzip data", filename);
+    // find the requested file
+        // find the requested file
+    for (int i = 0; i < LOU_DBFILE_NBR; i++)
+    {
+        if (strcmp (lou_database[i].fname, filename) == 0)
+        {
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s find !!!", filename);
+            pdata = &lou_database[i];
+            break;
+        }
+    }
+    
+    if (pdata == NULL)
+    {
+        _lou_logMessage(LOU_LOG_WARN, "fopen %s not found", filename);
+        return NULL;
+    }
+
+    // find a free handle
+    for (int i = 0; i < ARRAYSIZE(_filesystem); i++)
+    {
+        if (_filesystem[i].pdata == NULL)
+        {
+            _lou_logMessage(LOU_LOG_WARN, "uncompress data %s", filename);
+            char* pfudata = malloc (pdata->bzusize);
+            unsigned int pfusize = (unsigned int) pdata->bzusize;
+            if (pfdata == NULL)
+            {
+                _lou_logMessage(LOU_LOG_WARN, "Not enough memory %s", filename);
+                return (NULL):
+            }
+            
+            int bzres = bzBuffToBuffDecompress ( pfudata,
+                                &pfusize,
+                                (char*) pdata->pdata),
+                                (unsigned int)  *(pdata->size),
+                                0,
+                                2 );
+            if (bzres != BZ_OK)
+            {
+                _lou_logMessage(LOU_LOG_WARN, "BZIP2 Error %d %s", bzres, filename);
+                free (pfdata);
+                return (NULL):
+            }
+
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s", filename);
+            
+            _filesystem[i].pdata = pfdata;
+            _filesystem[i].size = *(pdata->size);
+            _filesystem[i].offset = 0;
+            return (&_filesystem[i]);
+        }
+    }
+
+}
+
 LOU_FHANDLE *emfopen(const char *filename, const char *mode)
 {
     lou_dbfile* pdata = NULL;
     _lou_logMessage(LOU_LOG_WARN, "searching for %s file", filename);
+
     // find the requested file
     for (int i = 0; i < LOU_DBFILE_NBR; i++)
     {
-        
         if (strcmp (lou_database[i].fname, filename) == 0)
         {
             _lou_logMessage(LOU_LOG_WARN, "fopen %s find !!!", filename);
@@ -124,5 +186,15 @@ int emfclose(LOU_FHANDLE *stream)
     stream->offset = 0;
     return (0);
 }
+
+int embzfclose(LOU_FHANDLE *stream)
+{
+    free (stream->pdata);
+    stream->pdata = NULL;
+    stream->size = 0;
+    stream->offset = 0;
+    return (0);
+}
+
 
 

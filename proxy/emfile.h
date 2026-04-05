@@ -25,7 +25,7 @@ typedef struct _EMFILE
 {
 	uint8_t* 	pdata;
 	size_t 	offset;
-	size_t	size;
+	size_t	size; 
 } EMFILE;
 
 EMFILE *emfopen(const char *filename, const char *mode);
