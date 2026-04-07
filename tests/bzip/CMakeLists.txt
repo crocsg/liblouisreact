@@ -52,7 +52,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 
 #-s USE_ES6_IMPORT_META=0 \
 
-set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS  "–s USE_BZIP2=1")
+#set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS  "–s USE_BZIP2=1")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
     --pre-js \
     ${CMAKE_SOURCE_DIR}/../../addons/locateFile.js \
