@@ -24,7 +24,7 @@
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
 
-#include <bzlib.h>
+//#include <bzlib.h>
 
 #endif
 
