@@ -24,7 +24,7 @@
 #include "emscripten.h"
 #define EXPORT_CALL EMSCRIPTEN_KEEPALIVE
 
-//#include <bzlib.h>
+#include "bzlib.h"
 
 #endif
 
@@ -97,7 +97,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
             if (pfudata == NULL)
             {
                 _lou_logMessage(LOU_LOG_WARN, "Not enough memory %s", filename);
-                return (NULL):
+                return (NULL);
             }
             
             int bzres = bzBuffToBuffDecompress ( pfudata,
