@@ -102,8 +102,8 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
             
             int bzres = bzBuffToBuffDecompress ( pfudata,
                                 &pfusize,
-                                (char*) pdata->pdata),
-                                (unsigned int)  *(pdata->size),
+                                (char*) pdata->bzdata),
+                                (unsigned int)  (pdata->bzusize),
                                 0,
                                 2 );
             if (bzres != BZ_OK)
