@@ -94,7 +94,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
             _lou_logMessage(LOU_LOG_WARN, "uncompress data %s", filename);
             char* pfudata = malloc (pdata->bzusize);
             unsigned int pfusize = (unsigned int) pdata->bzusize;
-            if (pfdata == NULL)
+            if (pfudata == NULL)
             {
                 _lou_logMessage(LOU_LOG_WARN, "Not enough memory %s", filename);
                 return (NULL):
