@@ -19,7 +19,7 @@ file(GLOB_RECURSE ENCODED
 
 message ("detected liblouis tables" "${ENCODED}")
 
-set(CMAKE_EXECUTABLE_SUFFIX ".htm")
+set(CMAKE_EXECUTABLE_SUFFIX ".html")
 add_executable(${PROJECT_NAME}
   
     ../../liblouis/liblouis/compileTranslationTable.c		
@@ -40,6 +40,8 @@ add_executable(${PROJECT_NAME}
     ../../database/loudatabase.c
     
     ${ENCODED}
+
+    ./bziptest.c
  )
 
 target_include_directories(${PROJECT_NAME}  PRIVATE
@@ -54,6 +56,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS  "--use-port=bzip2")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
+    --emrun \
     --pre-js \
     ${CMAKE_SOURCE_DIR}/../../addons/locateFile.js \
     --use-port=bzip2 \
