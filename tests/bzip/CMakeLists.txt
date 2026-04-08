@@ -59,7 +59,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 #-s EXPORT_NAME='createModule' \
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS  "--use-port=bzip2")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
-    --emrun \
+    
     --pre-js \
     ${CMAKE_SOURCE_DIR}/../../addons/locateFile.js \
     --use-port=bzip2 \
