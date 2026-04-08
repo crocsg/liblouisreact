@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "loudatabase.h"
 
 extern lou_dbfile lou_database[];
