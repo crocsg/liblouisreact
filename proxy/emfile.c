@@ -67,9 +67,10 @@ int emstat(const char *path, struct stat *buf)
 LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
 {
     lou_dbfile* pdata = NULL;
+
     _lou_logMessage(LOU_LOG_WARN, "searching for %s file bzip data", filename);
+    
     // find the requested file
-        // find the requested file
     for (int i = 0; i < LOU_DBFILE_NBR; i++)
     {
         if (strcmp (lou_database[i].fname, filename) == 0)
@@ -110,7 +111,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
             if (bzres != BZ_OK)
             {
                 _lou_logMessage(LOU_LOG_WARN, "BZIP2 Error %d %s", bzres, filename);
-                free (pfdata);
+                free (pfudata);
                 return (NULL);
             }
 
