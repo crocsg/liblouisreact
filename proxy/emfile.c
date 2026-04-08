@@ -101,7 +101,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
                 return (NULL);
             }
             
-            int bzres = bzBuffToBuffDecompress (
+            int bzres = BZ2_bzBuffToBuffDecompress (
                             pfudata,
                             &pfusize,
                             (char*) (pdata->bzdata),
@@ -117,7 +117,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
 
             _lou_logMessage(LOU_LOG_WARN, "fopen %s size %d", filename, pfusize);
             
-            _filesystem[i].pdata = pfudata;
+            _filesystem[i].pdata = (uint8_t*) pfudata;
             _filesystem[i].size = pfusize;
             _filesystem[i].offset = 0;
             return (&_filesystem[i]);
