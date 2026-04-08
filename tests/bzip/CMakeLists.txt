@@ -57,7 +57,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
     --pre-js \
     ${CMAKE_SOURCE_DIR}/../../addons/locateFile.js \
     --use-port=bzip2 \
-    -s USE_BZIP2=1 \
     -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
     -s STACK_SIZE=5242880 \
