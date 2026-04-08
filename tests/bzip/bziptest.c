@@ -8,7 +8,7 @@ extern lou_dbfile lou_database[];
 
 int main (void)
 {
-    for (int i = 0;i < ARRAYSIZE(lou_database);i++)
+    for (int i = 0;i < LOU_DBFILE_NBR; i++)
     {
         printf ("filename : %s\n",lou_database[i].fname);
     }
