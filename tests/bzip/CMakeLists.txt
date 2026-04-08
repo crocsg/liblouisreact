@@ -56,7 +56,7 @@ target_include_directories(${PROJECT_NAME}  PRIVATE
 #-s EXPORTED_FUNCTIONS='[\"_malloc\", \"_free\"]' \
 #    -s EXPORTED_RUNTIME_METHODS='[\"ccall\", \"cwrap\", \"stringToUTF32\", \"UTF32ToString\", \"lengthBytesUTF32\", 
 # \"AsciiToString\"]'  ")
-
+#-s EXPORT_NAME='createModule' \
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS  "--use-port=bzip2")
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
     --emrun \
@@ -66,5 +66,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "-Oz   \
     -s TOTAL_MEMORY=512mb \
     -s ENVIRONMENT='web' \
     -s STACK_SIZE=5242880 \
-    -s EXPORT_NAME='createModule' \
+    
 ")    
