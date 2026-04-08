@@ -111,7 +111,7 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
             {
                 _lou_logMessage(LOU_LOG_WARN, "BZIP2 Error %d %s", bzres, filename);
                 free (pfdata);
-                return (NULL):
+                return (NULL);
             }
 
             _lou_logMessage(LOU_LOG_WARN, "fopen %s size %d", filename, pfusize);
