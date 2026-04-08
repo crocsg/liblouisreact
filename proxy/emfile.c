@@ -100,12 +100,13 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
                 return (NULL);
             }
             
-            int bzres = bzBuffToBuffDecompress ( pfudata,
-                                &pfusize,
-                                (char*) pdata->bzdata),
-                                (unsigned int)  (pdata->bzusize),
-                                0,
-                                2 );
+            int bzres = bzBuffToBuffDecompress (
+                            pfudata,
+                            &pfusize,
+                            (char*) (pdata->bzdata),
+                            (unsigned int)  (pdata->bzusize),
+                            0,
+                            2);
             if (bzres != BZ_OK)
             {
                 _lou_logMessage(LOU_LOG_WARN, "BZIP2 Error %d %s", bzres, filename);
@@ -113,10 +114,10 @@ LOU_FHANDLE *embzfopen(const char *filename, const char *mode)
                 return (NULL):
             }
 
-            _lou_logMessage(LOU_LOG_WARN, "fopen %s", filename);
+            _lou_logMessage(LOU_LOG_WARN, "fopen %s size %d", filename, pfusize);
             
-            _filesystem[i].pdata = pfdata;
-            _filesystem[i].size = *(pdata->size);
+            _filesystem[i].pdata = pfudata;
+            _filesystem[i].size = pfusize;
             _filesystem[i].offset = 0;
             return (&_filesystem[i]);
         }
