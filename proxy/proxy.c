@@ -122,6 +122,7 @@ widechar* EXPORT_CALL unicode_backtranslate_string (widechar* brlsrc, int len, i
 lou_dotsToChar(
 		const char *tableList, widechar *inbuf, widechar *outbuf, int length, int mode)
 */
+/*
 widechar* EXPORT_CALL loureact_dot_to_char (widechar* src, int len, int tblid)
 {
     widechar* pout = malloc(len * sizeof(widechar) * 2);
@@ -145,6 +146,7 @@ widechar* EXPORT_CALL loureact_dot_to_char (widechar* src, int len, int tblid)
 
     return pout;
 }
+    */
 size_t EXPORT_CALL loureact_get_stack_free (void)
 {
     return (emscripten_stack_get_free());
