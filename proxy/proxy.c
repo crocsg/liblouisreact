@@ -147,12 +147,13 @@ widechar* EXPORT_CALL unicode_backtranslate_string (widechar* brlsrc, int len, i
 lou_dotsToChar(
 		const char *tableList, widechar *inbuf, widechar *outbuf, int length, int mode)
 */
-/*
+
 widechar* EXPORT_CALL loureact_dot_to_char (widechar* src, int len, int tblid)
 {
-    widechar* pout = malloc(len * sizeof(widechar) * 2);
-    int outlen = len * 2;
     char  tblist[1024];
+    size_t msize = (len + 1) * sizeof(widechar);
+    widechar* pout = malloc(msize);
+    
     
     _lou_logMessage(LOU_LOG_WARN, "loureact_dot_to_char");    
 
@@ -160,10 +161,10 @@ widechar* EXPORT_CALL loureact_dot_to_char (widechar* src, int len, int tblid)
        
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string table=%s", tblist);
     _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len=%d", len);
-    _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len bytes=%d", len * sizeof(widechar) * 2);
+    _lou_logMessage(LOU_LOG_WARN, "unicode_translate_string len bytes=%d", msize);
     
     _status = 0;
-    memset (pout, 0, len * sizeof(widechar) * 2);
+    memset (pout, 0, msize);
     int result = lou_dotsToChar(tblist, src, pout, len, 0);
 
     _lou_logMessage(LOU_LOG_WARN, "lou_dotsToChar ok %d", result);
@@ -171,7 +172,7 @@ widechar* EXPORT_CALL loureact_dot_to_char (widechar* src, int len, int tblid)
 
     return pout;
 }
-    */
+    
 size_t EXPORT_CALL loureact_get_stack_free (void)
 {
     return (emscripten_stack_get_free());
